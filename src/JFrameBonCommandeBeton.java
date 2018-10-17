@@ -5,6 +5,8 @@
 
 import Métier.Client;
 import Métier.Fournisseur;
+import com.github.lgooddatepicker.components.DateTimePicker;
+import com.github.lgooddatepicker.components.TimePickerSettings;
 import com.toedter.calendar.JCalendar;
 import dao.BddDAO;
 import java.awt.Color;
@@ -19,8 +21,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Time;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.Locale;
 import java.util.logging.Level;
@@ -1122,24 +1127,37 @@ public class JFrameBonCommandeBeton extends javax.swing.JFrame {
 
     private void boutonCalendrierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonCalendrierActionPerformed
         // TODO add your handling code here:
+
+        // initialisation des paramètres du time picker (heure par défaut : 8h)
+        TimePickerSettings timePickerSettings = new TimePickerSettings();
+        timePickerSettings.initialTime = LocalTime.of(8, 0);
+        
         /* afficher le calendrier */
-        JCalendar c = new JCalendar(); // calendrier (JPanel)
+        DateTimePicker dateTimePicker = new DateTimePicker(null, timePickerSettings);
 
         JDialog d = new JDialog(); // fenêtre
         d.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         d.setTitle("Choisir une date");
         d.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-        d.add(c);
+        d.add(dateTimePicker);
         d.pack();
         d.setLocationRelativeTo(JFrameBonCommandeBeton.this);
         d.setVisible(true);
 
-        Date date = c.getCalendar().getTime(); // on récupère la date
+        // on récupère la date
+        LocalDate localDate = dateTimePicker.getDatePicker().getDate();
+        Date date = java.sql.Date.valueOf(localDate);
+        // on récupère l'heure
+        LocalTime localTime = dateTimePicker.getTimePicker().getTime();
+        Time time = java.sql.Time.valueOf(localTime);
 
-        /* on affiche la date dans le jtextfiel */
+        /* on affiche la date et l'heure dans le jtextfiel */
         Locale locale = Locale.getDefault();
-        DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.FULL, locale);
-        fieldDate.setText(dateFormat.format(date));
+        DateFormat formatDate = DateFormat.getDateInstance(DateFormat.FULL, locale);
+        DateFormat formatHeure = new SimpleDateFormat("HH:mm");
+        String dateAffiche = formatDate.format(date);
+        String heureAffiche = formatHeure.format(time).replace(":", "h");
+        fieldDate.setText(dateAffiche + " - BETON : " + heureAffiche);
     }//GEN-LAST:event_boutonCalendrierActionPerformed
 
     private void boutonDech1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonDech1ActionPerformed
