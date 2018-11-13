@@ -30,7 +30,7 @@ public class ChangeTableModelBDCTS implements TableModelListener {
     @Override
     public void tableChanged(TableModelEvent e) {
         try{
-            int qtt=(int) tab.getValueAt(e.getFirstRow(), 1);
+            float qtt=(float) tab.getValueAt(e.getFirstRow(), 1);
             float prixU=(float) tab.getValueAt(e.getFirstRow(), 3);
             float montant=arrondiCalcul(qtt*prixU);           
             tab.getModel().removeTableModelListener(this);

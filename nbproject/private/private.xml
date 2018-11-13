@@ -3,24 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Benjamin/Documents/NetBeansProjects/SOL2GEST/src/JFrameBonCommande.java</file>
-            <file>file:/C:/Users/Benjamin/Documents/NetBeansProjects/SOL2GEST/src/JFrameAjoutProduitsTab.java</file>
-            <file>file:/C:/Users/Benjamin/Documents/NetBeansProjects/SOL2GEST/src/DAO/BddDAO.java</file>
-            <file>file:/C:/Users/Benjamin/Documents/NetBeansProjects/SOL2GEST/src/JFrameDevisGest.java</file>
-            <file>file:/C:/Users/Benjamin/Documents/NetBeansProjects/SOL2GEST/src/ChangeTableModelBDCFibre.java</file>
-            <file>file:/C:/Users/Benjamin/Documents/NetBeansProjects/SOL2GEST/src/JFrameProduits.java</file>
-            <file>file:/C:/Users/Benjamin/Documents/NetBeansProjects/SOL2GEST/src/JFrameAjoutClient.java</file>
-            <file>file:/C:/Users/Benjamin/Documents/NetBeansProjects/SOL2GEST/src/JFrameClients.java</file>
-            <file>file:/C:/Users/Benjamin/Documents/NetBeansProjects/SOL2GEST/src/ChangeTableModelBDCTS.java</file>
-            <file>file:/C:/Users/Benjamin/Documents/NetBeansProjects/SOL2GEST/src/ChangeTableModelBDCPompe.java</file>
-            <file>file:/C:/Users/Benjamin/Documents/NetBeansProjects/SOL2GEST/src/ChangeTableModelBDCBeton.java</file>
-            <file>file:/C:/Users/Benjamin/Documents/NetBeansProjects/SOL2GEST/src/JFrameBonCommandeFibre.java</file>
-            <file>file:/C:/Users/Benjamin/Documents/NetBeansProjects/SOL2GEST/src/JFrameBonCommandeTS.java</file>
-            <file>file:/C:/Users/Benjamin/Documents/NetBeansProjects/SOL2GEST/src/JFrameAjoutFournisseur.java</file>
-            <file>file:/C:/Users/Benjamin/Documents/NetBeansProjects/SOL2GEST/src/JFrameAjoutProduit.java</file>
-            <file>file:/C:/Users/Benjamin/Documents/NetBeansProjects/SOL2GEST/src/ChangeTableModelBDC.java</file>
-            <file>file:/C:/Users/Benjamin/Documents/NetBeansProjects/SOL2GEST/src/JFrameBonCommandeBeton.java</file>
-            <file>file:/C:/Users/Benjamin/Documents/NetBeansProjects/SOL2GEST/src/JFrameBonCommandePompe.java</file>
+            <file>file:/C:/Users/Benjamin/Desktop/SOL2S/SOL2GEST_v3.0/src/JFrameBonCommandePompe.java</file>
+            <file>file:/C:/Users/Benjamin/Desktop/SOL2S/SOL2GEST_v3.0/src/JFrameBonCommandeBeton.java</file>
+            <file>file:/C:/Users/Benjamin/Desktop/SOL2S/SOL2GEST_v3.0/src/JFrameDevisGest.java</file>
         </group>
     </open-files>
 </project-private>

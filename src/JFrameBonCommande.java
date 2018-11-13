@@ -406,7 +406,7 @@ public class JFrameBonCommande extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Float.class, java.lang.Float.class
+                java.lang.String.class, java.lang.Float.class, java.lang.String.class, java.lang.Float.class, java.lang.Float.class
             };
             boolean[] canEdit = new boolean [] {
                 true, true, true, true, false
@@ -881,7 +881,7 @@ public class JFrameBonCommande extends javax.swing.JFrame {
                 }else{
                     sheet.getRow((short) 14+i).getCell(0).setCellValue((String) tabProd.getValueAt(i, 0));
                 }
-                sheet.getRow((short) 14+i).getCell(1).setCellValue(Integer.toString((int)tabProd.getValueAt(i, 1)));
+                sheet.getRow((short) 14+i).getCell(1).setCellValue(String.valueOf((float)tabProd.getValueAt(i, 1)));
                 sheet.getRow((short) 14+i).getCell(2).setCellValue((String) tabProd.getValueAt(i, 2));
                 sheet.getRow((short) 14+i).getCell(3).setCellValue(String.valueOf((float)tabProd.getValueAt(i, 3)));
                 sheet.getRow((short) 14+i).getCell(4).setCellValue(String.valueOf((float)tabProd.getValueAt(i, 4)));
@@ -942,7 +942,7 @@ public class JFrameBonCommande extends javax.swing.JFrame {
 
             for(int i=0;i<tabProd.getRowCount();i++){
                 sheet.getRow((short) 9+i).getCell(0).setCellValue((String) tabProd.getValueAt(i, 0));
-                sheet.getRow((short) 9+i).getCell(1).setCellValue(Integer.toString((int)tabProd.getValueAt(i, 1)));
+                sheet.getRow((short) 9+i).getCell(1).setCellValue(String.valueOf((float)tabProd.getValueAt(i, 1)));
                 sheet.getRow((short) 9+i).getCell(2).setCellValue((String) tabProd.getValueAt(i, 2));
                 sheet.getRow((short) 9+i).getCell(3).setCellValue(String.valueOf((float)tabProd.getValueAt(i, 3)));
             }
@@ -1075,7 +1075,7 @@ public class JFrameBonCommande extends javax.swing.JFrame {
             }
             model.addRow(new Object[]{}); 
             tabProd.setValueAt(sheet.getRow((short) 9+i).getCell(0).getStringCellValue(), i, 0);
-            tabProd.setValueAt(Integer.parseInt(sheet.getRow((short) 9+i).getCell(1).getStringCellValue()), i, 1);
+            tabProd.setValueAt(Float.parseFloat(sheet.getRow((short) 9+i).getCell(1).getStringCellValue()), i, 1);
             tabProd.setValueAt(sheet.getRow((short) 9+i).getCell(2).getStringCellValue(), i, 2);
             tabProd.setValueAt(Float.parseFloat(sheet.getRow((short) 9+i).getCell(3).getStringCellValue()), i, 3);
         }
@@ -1406,6 +1406,6 @@ public class JFrameBonCommande extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuImprimer;
     private javax.swing.JMenuItem menuNouveau;
     private javax.swing.JMenuItem menuOuvrir;
-    private javax.swing.JTable tabProd;
+    private static javax.swing.JTable tabProd;
     // End of variables declaration//GEN-END:variables
 }
