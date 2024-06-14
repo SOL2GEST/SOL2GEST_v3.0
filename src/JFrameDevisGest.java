@@ -5,7 +5,7 @@
 
 import Métier.Client;
 import Métier.MPanelPrinter;
-import dao.BddDAO;
+import DAO.BddDAO;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
@@ -35,6 +35,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Arrays;
 import javax.swing.JCheckBox;
+import javax.swing.JFrame;
 
 /**
  *
@@ -52,6 +53,7 @@ public class JFrameDevisGest extends javax.swing.JFrame {
     
     public JFrameDevisGest() {
         initComponents();
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH); // Maximiser la fenêtre
         this.pack();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
@@ -63,8 +65,8 @@ public class JFrameDevisGest extends javax.swing.JFrame {
             String clientsString = BddDAO.importClientsFromText();
             String[] clientsString2 = clientsString.split("//");
             Arrays.sort(clientsString2);
-            for(int i=0;i<clientsString2.length;i++){
-                String[] clientString = clientsString2[i].split(";");
+            for (String clientsString21 : clientsString2) {
+                String[] clientString = clientsString21.split(";");
                 String libelle="";
                 String correspondant="";
                 String tel="";
@@ -82,7 +84,7 @@ public class JFrameDevisGest extends javax.swing.JFrame {
                     
                 }
                 Client unClient = new Client(libelle, correspondant, tel, fax, mail, adresse);
-                this.comboBoxEntreprise.addItem(unClient.getLibelle());
+                JFrameDevisGest.comboBoxEntreprise.addItem(unClient.getLibelle());
             }
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Un problème est survenu au chargement de la BDD", "Erreur", JOptionPane.ERROR_MESSAGE);
@@ -369,7 +371,6 @@ public class JFrameDevisGest extends javax.swing.JFrame {
         setTitle("ETUDE DE PRIX");
         setBackground(new java.awt.Color(255, 255, 255));
         setIconImage(new ImageIcon("./image/logo-sol2s.png" ).getImage());
-        setMaximumSize(new java.awt.Dimension(1100, 617));
         setMinimumSize(new java.awt.Dimension(1100, 617));
         setSize(new java.awt.Dimension(1100, 617));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -411,12 +412,12 @@ public class JFrameDevisGest extends javax.swing.JFrame {
                 {null},
                 {null},
                 {null},
-                { new Float(3.85)},
+                { new Float(4.2)},
                 {null},
-                { new Float(0.85)},
+                { new Float(1.2)},
                 {null},
-                { new Float(0.8)},
-                {null}
+                { new Float(1.0)},
+                { new Float(1.0)}
             },
             new String [] {
                 "PRIX"
@@ -651,7 +652,7 @@ public class JFrameDevisGest extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addComponent(fieldPloy)
+                                .addComponent(fieldPloy, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel15))
                             .addComponent(fieldTS1)
@@ -698,7 +699,7 @@ public class JFrameDevisGest extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -835,7 +836,6 @@ public class JFrameDevisGest extends javax.swing.JFrame {
 
         buttonAddClient.setToolTipText("ajouter/modifier/supprimer des clients");
         buttonAddClient.setFocusable(false);
-        buttonAddClient.setOpaque(false);
         buttonAddClient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAddClientActionPerformed(evt);
@@ -862,7 +862,7 @@ public class JFrameDevisGest extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(fieldInterlocuteur, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboBoxEntreprise, 0, 226, Short.MAX_VALUE))
+                            .addComponent(comboBoxEntreprise, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonAddClient))
                     .addComponent(fieldAdresse))
@@ -1018,7 +1018,7 @@ public class JFrameDevisGest extends javax.swing.JFrame {
 
         jLabel37.setText("Pnx *");
 
-        fieldCalculPoly5.setText("63");
+        fieldCalculPoly5.setText("73");
         fieldCalculPoly5.setMinimumSize(new java.awt.Dimension(6, 100));
         fieldCalculPoly5.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
@@ -1026,7 +1026,7 @@ public class JFrameDevisGest extends javax.swing.JFrame {
             }
         });
 
-        fieldCalculTS5.setText("14");
+        fieldCalculTS5.setText("19");
         fieldCalculTS5.setMinimumSize(new java.awt.Dimension(6, 100));
         fieldCalculTS5.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
@@ -1072,7 +1072,7 @@ public class JFrameDevisGest extends javax.swing.JFrame {
 
         jLabel43.setText("ml *");
 
-        fieldCalculCAB2.setText("0.30");
+        fieldCalculCAB2.setText("0.40");
         fieldCalculCAB2.setMinimumSize(new java.awt.Dimension(6, 100));
         fieldCalculCAB2.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
@@ -1105,7 +1105,7 @@ public class JFrameDevisGest extends javax.swing.JFrame {
             }
         });
 
-        fieldCalculBeton2.setText("81");
+        fieldCalculBeton2.setText("115");
         fieldCalculBeton2.setMinimumSize(new java.awt.Dimension(6, 100));
         fieldCalculBeton2.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
@@ -1384,7 +1384,7 @@ public class JFrameDevisGest extends javax.swing.JFrame {
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(fieldCalculTS1, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
+                                            .addComponent(fieldCalculTS1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(fieldCalculPoly1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addComponent(fieldCalculBeton1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(fieldCalculTS6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -1421,7 +1421,7 @@ public class JFrameDevisGest extends javax.swing.JFrame {
                                 .addComponent(fieldCoef, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(fieldCalculPompe1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(fieldCalculFibre1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 4, Short.MAX_VALUE)
+                .addGap(0, 18, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1486,9 +1486,9 @@ public class JFrameDevisGest extends javax.swing.JFrame {
                                                 .addGap(0, 0, Short.MAX_VALUE))
                                             .addGroup(jPanel4Layout.createSequentialGroup()
                                                 .addComponent(jLabel48)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 16, Short.MAX_VALUE)
                                                 .addComponent(comboBoxBeton, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 0, Short.MAX_VALUE))))
+                                                .addGap(0, 6, Short.MAX_VALUE))))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -1537,10 +1537,10 @@ public class JFrameDevisGest extends javax.swing.JFrame {
                                                                 .addGap(0, 0, 0)
                                                                 .addComponent(jLabel77)))))))
                                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(fieldCalculTS5, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
+                                            .addComponent(fieldCalculTS5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(fieldCalculPoly5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(fieldCalculTS10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 8, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
@@ -1566,7 +1566,7 @@ public class JFrameDevisGest extends javax.swing.JFrame {
                                                 .addGroup(jPanel4Layout.createSequentialGroup()
                                                     .addComponent(jLabel45)
                                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(fieldCalculCABTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE))
+                                                    .addComponent(fieldCalculCABTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                                 .addGroup(jPanel4Layout.createSequentialGroup()
                                                     .addComponent(jLabel49)
                                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1747,7 +1747,12 @@ public class JFrameDevisGest extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1755,13 +1760,8 @@ public class JFrameDevisGest extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fieldDate, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(fieldDate, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(20, 20, 20))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1773,9 +1773,9 @@ public class JFrameDevisGest extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(fieldDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(20, 20, 20))
@@ -1850,7 +1850,7 @@ public class JFrameDevisGest extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 

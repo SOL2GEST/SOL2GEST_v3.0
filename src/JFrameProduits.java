@@ -5,7 +5,7 @@
 
 
 import Métier.Produit;
-import dao.BddDAO;
+import DAO.BddDAO;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,14 +33,14 @@ public class JFrameProduits extends javax.swing.JFrame {
         this.setVisible(true);
         String[] colums = {"Ref","Unité"};
         model.setColumnIdentifiers(colums);     
-        this.tabProd.setModel(model);
+        JFrameProduits.tabProd.setModel(model);
         tabProd.getColumnModel().getColumn(0).setPreferredWidth(300);
         try{
             String produitsString = BddDAO.importProduitsFromText();
             String[] produitsString2 = produitsString.split("//");
             Arrays.sort(produitsString2);
-            for(int i=0;i<produitsString2.length;i++){
-                String[] produitString = produitsString2[i].split(";");
+            for (String produitsString21 : produitsString2) {
+                String[] produitString = produitsString21.split(";");
                 String ref="";
                 String unite="";
                 try{
@@ -236,13 +236,13 @@ public class JFrameProduits extends javax.swing.JFrame {
             int reply = JOptionPane.showConfirmDialog(null, "Etes vous sûr de vouloir supprimer cet élément ?", "", YES_NO_OPTION);
             if (reply == JOptionPane.YES_OPTION){
                 int index = tabProd.getSelectedRow();
-                DefaultTableModel model = (DefaultTableModel) tabProd.getModel();
-                model.removeRow(index);
+                DefaultTableModel tableModel = (DefaultTableModel) tabProd.getModel();
+                tableModel.removeRow(index);
 
                 ArrayList produits = new ArrayList();
-                for(int i=0;i<this.tabProd.getRowCount();i++){
-                    String ref = (String)this.tabProd.getValueAt(i,0);
-                    String unite = (String)this.tabProd.getValueAt(i,1);
+                for(int i=0;i<JFrameProduits.tabProd.getRowCount();i++){
+                    String ref = (String)JFrameProduits.tabProd.getValueAt(i,0);
+                    String unite = (String)JFrameProduits.tabProd.getValueAt(i,1);
                     Produit unProduit = new Produit(ref,unite);
                     String unProduitString = unProduit.getRef()+";"+unProduit.getUnite()+";//";
                     produits.add(unProduitString);
@@ -259,11 +259,11 @@ public class JFrameProduits extends javax.swing.JFrame {
 
     private void boutonValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonValiderActionPerformed
         // TODO add your handling code here:
-        if(this.tabProd.getSelectedRow()!=-1){
+        if(JFrameProduits.tabProd.getSelectedRow()!=-1){
             ArrayList produits = new ArrayList();
-            for(int i=0;i<this.tabProd.getRowCount();i++){
-                String ref = (String)this.tabProd.getValueAt(i,0);
-                String unite = (String)this.tabProd.getValueAt(i,1);
+            for(int i=0;i<JFrameProduits.tabProd.getRowCount();i++){
+                String ref = (String)JFrameProduits.tabProd.getValueAt(i,0);
+                String unite = (String)JFrameProduits.tabProd.getValueAt(i,1);
                 Produit unProduit = new Produit(ref,unite);
                 String unProduitString = unProduit.getRef()+";"+unProduit.getUnite()+";//";
                 produits.add(unProduitString);
@@ -276,23 +276,24 @@ public class JFrameProduits extends javax.swing.JFrame {
 
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "Pour supprimer : Séletionner une ligne puis appuyer sur la touche suppr\n"
-                + "Pour modifier : double clic sur une cellule du tableau\n"
-                + "Pour ajouter : cliquer sur le bouton +",
+        JOptionPane.showMessageDialog(this, """
+                                            Pour supprimer : S\u00e9letionner une ligne puis appuyer sur la touche suppr
+                                            Pour modifier : double clic sur une cellule du tableau
+                                            Pour ajouter : cliquer sur le bouton +""",
                 "Infos", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jMenu1MouseClicked
 
     private void boutonRechercherCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_boutonRechercherCaretUpdate
         // TODO add your handling code here:
-        int rowCount = this.tabProd.getRowCount();
+        int rowCount = JFrameProduits.tabProd.getRowCount();
         for (int i=rowCount-1 ; i>=0 ; --i) model.removeRow(i);
 
         try{
             String produitsString = BddDAO.importProduitsFromText();
             String[] produitsString2 = produitsString.split("//");
             Arrays.sort(produitsString2);
-            for(int i=0;i<produitsString2.length;i++){
-                String[] produitString = produitsString2[i].split(";");
+            for (String produitsString21 : produitsString2) {
+                String[] produitString = produitsString21.split(";");
                 String ref="";
                 String unite="";
                 try{
@@ -321,14 +322,13 @@ public class JFrameProduits extends javax.swing.JFrame {
         if(modif == false){
             this.dispose();
         }else{
-            JOptionPane jop = new JOptionPane();			
-            int option = jop.showConfirmDialog(null, "Voulez-vous enregistrer les modifications avant de quitter ?", "Enregistrer ?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            int option = JOptionPane.showConfirmDialog(null, "Voulez-vous enregistrer les modifications avant de quitter ?", "Enregistrer ?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if(option == JOptionPane.OK_OPTION){
-                if(this.tabProd.getSelectedRow()!=-1){
+                if(JFrameProduits.tabProd.getSelectedRow()!=-1){
                     ArrayList produits = new ArrayList();
-                    for(int i=0;i<this.tabProd.getRowCount();i++){
-                        String ref = (String)this.tabProd.getValueAt(i,0);
-                        String unite = (String)this.tabProd.getValueAt(i,1);
+                    for(int i=0;i<JFrameProduits.tabProd.getRowCount();i++){
+                        String ref = (String)JFrameProduits.tabProd.getValueAt(i,0);
+                        String unite = (String)JFrameProduits.tabProd.getValueAt(i,1);
                         Produit unProduit = new Produit(ref,unite);
                         String unProduitString = unProduit.getRef()+";"+unProduit.getUnite()+";//";
                         produits.add(unProduitString);

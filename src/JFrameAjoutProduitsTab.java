@@ -5,7 +5,7 @@
 
 
 import Métier.Produit;
-import dao.BddDAO;
+import DAO.BddDAO;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
@@ -31,16 +31,16 @@ public class JFrameAjoutProduitsTab extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         this.tab=tab;
-        this.jTable2.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        JFrameAjoutProduitsTab.jTable2.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         String[] colums = {"Produits"};
         model.setColumnIdentifiers(colums);     
-        this.jTable2.setModel(model);
+        JFrameAjoutProduitsTab.jTable2.setModel(model);
         try{
             String produitsString = BddDAO.importProduitsFromText();
             String[] produitsString2 = produitsString.split("//");
             Arrays.sort(produitsString2);
-            for(int i=0;i<produitsString2.length;i++){
-                String[] produitString = produitsString2[i].split(";");
+            for (String produitsString21 : produitsString2) {
+                String[] produitString = produitsString21.split(";");
                 String ref="";
                 String unite="";
                 try{
@@ -220,8 +220,8 @@ public class JFrameAjoutProduitsTab extends javax.swing.JFrame {
             
             String produitsString = BddDAO.importProduitsFromText();
             String[] produitsString2 = produitsString.split("//");
-            for(int i=0;i<produitsString2.length;i++){
-                String[] produitString = produitsString2[i].split(";");
+            for (String produitsString21 : produitsString2) {
+                String[] produitString = produitsString21.split(";");
                 String ref="";
                 String unite="";
                 try{
@@ -266,15 +266,15 @@ public class JFrameAjoutProduitsTab extends javax.swing.JFrame {
 
     private void fieldRechercherCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_fieldRechercherCaretUpdate
         // TODO add your handling code here:
-        int rowCount = this.jTable2.getRowCount();
+        int rowCount = JFrameAjoutProduitsTab.jTable2.getRowCount();
         for (int i=rowCount-1 ; i>=0 ; --i) model.removeRow(i);
 
         try{
             String produitsString = BddDAO.importProduitsFromText();
             String[] produitsString2 = produitsString.split("//");
             Arrays.sort(produitsString2);
-            for(int i=0;i<produitsString2.length;i++){
-                String[] produitString = produitsString2[i].split(";");
+            for (String produitsString21 : produitsString2) {
+                String[] produitString = produitsString21.split(";");
                 String ref="";
                 String unite="";
                 try{

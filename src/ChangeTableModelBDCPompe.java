@@ -1,5 +1,4 @@
 
-import java.awt.Color;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.event.TableModelEvent;
@@ -23,8 +22,8 @@ public class ChangeTableModelBDCPompe implements TableModelListener {
 
     public ChangeTableModelBDCPompe(JTable tab, JTextField montantTot) {
         super();
-        this.tab=tab;
-        this.montantTot=montantTot;
+        ChangeTableModelBDCPompe.tab=tab;
+        ChangeTableModelBDCPompe.montantTot=montantTot;
     }
 
     @Override

@@ -5,8 +5,7 @@
 
 
 import Métier.Client;
-import javax.swing.JFrame;
-import dao.BddDAO;
+import DAO.BddDAO;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;

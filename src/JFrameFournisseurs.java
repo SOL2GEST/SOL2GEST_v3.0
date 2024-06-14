@@ -5,7 +5,7 @@
 
 
 import Métier.Fournisseur;
-import dao.BddDAO;
+import DAO.BddDAO;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,6 +33,11 @@ public class JFrameFournisseurs extends javax.swing.JFrame{
     
     /**
      * Creates new form JFrameDemoModeleList
+     * @param comboBoxFourni
+     * @param fieldCores
+     * @param fieldTel
+     * @param fieldFax
+     * @param fieldMail
      */
     public JFrameFournisseurs(JComboBox comboBoxFourni, JTextField fieldCores,  JTextField fieldTel, JTextField fieldFax, JTextField fieldMail) {
         initComponents();
@@ -46,7 +51,7 @@ public class JFrameFournisseurs extends javax.swing.JFrame{
         this.fieldMail=fieldMail;
         String[] colums = {"Libelle","Correspondant","Tel","Fax","Mail"};
         model.setColumnIdentifiers(colums);     
-        this.tabFourni.setModel(model);
+        JFrameFournisseurs.tabFourni.setModel(model);
         tabFourni.getColumnModel().getColumn(0).setPreferredWidth(200);
         tabFourni.getColumnModel().getColumn(1).setPreferredWidth(150);
         tabFourni.getColumnModel().getColumn(2).setPreferredWidth(110);
@@ -56,8 +61,8 @@ public class JFrameFournisseurs extends javax.swing.JFrame{
             String fournisseursString = BddDAO.importFournisseursFromText();
             String[] fournisseursString2 = fournisseursString.split("//");
             Arrays.sort(fournisseursString2);
-            for(int i=0;i<fournisseursString2.length;i++){
-                String[] fournisseurString = fournisseursString2[i].split(";");
+            for (String fournisseursString21 : fournisseursString2) {
+                String[] fournisseurString = fournisseursString21.split(";");
                 String libelle="";
                 String correspondant="";
                 String tel="";
@@ -267,19 +272,19 @@ public class JFrameFournisseurs extends javax.swing.JFrame{
                 int reply = JOptionPane.showConfirmDialog(null, "Etes vous sûr de vouloir supprimer cet élément ?", "", YES_NO_OPTION);
                 if (reply == JOptionPane.YES_OPTION){
                     int index = tabFourni.getSelectedRow();
-                    DefaultTableModel model = (DefaultTableModel) tabFourni.getModel();
-                    Object fourniSuppr = model.getValueAt(index, 0);
+                    DefaultTableModel tableModel = (DefaultTableModel) tabFourni.getModel();
+                    Object fourniSuppr = tableModel.getValueAt(index, 0);
                     comboBoxFourni.removeItem(fourniSuppr);
                     comboBoxFourni.setSelectedIndex(0);
-                    model.removeRow(index);
+                    tableModel.removeRow(index);
 
                     ArrayList forunisseurs = new ArrayList();
-                    for(int i=0;i<this.tabFourni.getRowCount();i++){
-                        String libelle = (String)this.tabFourni.getValueAt(i,0);
-                        String correspondant = (String)this.tabFourni.getValueAt(i,1);
-                        String tel = (String)this.tabFourni.getValueAt(i,2);
-                        String fax = (String)this.tabFourni.getValueAt(i,3);
-                        String mail = (String)this.tabFourni.getValueAt(i,4);
+                    for(int i=0;i<JFrameFournisseurs.tabFourni.getRowCount();i++){
+                        String libelle = (String)JFrameFournisseurs.tabFourni.getValueAt(i,0);
+                        String correspondant = (String)JFrameFournisseurs.tabFourni.getValueAt(i,1);
+                        String tel = (String)JFrameFournisseurs.tabFourni.getValueAt(i,2);
+                        String fax = (String)JFrameFournisseurs.tabFourni.getValueAt(i,3);
+                        String mail = (String)JFrameFournisseurs.tabFourni.getValueAt(i,4);
                         Fournisseur unFournisseur = new Fournisseur(libelle,correspondant,tel,fax,mail);
                         String unFournisseurString = unFournisseur.getLibelle()+";"+unFournisseur.getCorrespondant()+";"+unFournisseur.getTel()+";"+unFournisseur.getFax()+";"+unFournisseur.getMail()+";//";
                         forunisseurs.add(unFournisseurString);
@@ -299,14 +304,14 @@ public class JFrameFournisseurs extends javax.swing.JFrame{
 
     private void boutonValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonValiderActionPerformed
         // TODO add your handling code here:
-        if(this.tabFourni.getSelectedRow()!=-1){ 
+        if(JFrameFournisseurs.tabFourni.getSelectedRow()!=-1){ 
             ArrayList fournisseurs = new ArrayList();
-            for(int i=0;i<this.tabFourni.getRowCount();i++){
-                String libelle = (String)this.tabFourni.getValueAt(i,0);
-                String correspondant = (String)this.tabFourni.getValueAt(i,1);
-                String tel = (String)this.tabFourni.getValueAt(i,2);
-                String fax = (String)this.tabFourni.getValueAt(i,3);
-                String mail = (String)this.tabFourni.getValueAt(i,4);
+            for(int i=0;i<JFrameFournisseurs.tabFourni.getRowCount();i++){
+                String libelle = (String)JFrameFournisseurs.tabFourni.getValueAt(i,0);
+                String correspondant = (String)JFrameFournisseurs.tabFourni.getValueAt(i,1);
+                String tel = (String)JFrameFournisseurs.tabFourni.getValueAt(i,2);
+                String fax = (String)JFrameFournisseurs.tabFourni.getValueAt(i,3);
+                String mail = (String)JFrameFournisseurs.tabFourni.getValueAt(i,4);
                 Fournisseur unFournisseur = new Fournisseur(libelle,correspondant,tel,fax,mail);
                 String unFournisseurString = unFournisseur.getLibelle()+";"+unFournisseur.getCorrespondant()+";"+unFournisseur.getTel()+";"+unFournisseur.getFax()+";"+unFournisseur.getMail()+";//";
                 fournisseurs.add(unFournisseurString);
@@ -321,23 +326,24 @@ public class JFrameFournisseurs extends javax.swing.JFrame{
 
     private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "Pour supprimer : Séletionner une ligne puis appuyer sur la touche suppr\n"
-                + "Pour modifier : double clic sur une cellule du tableau\n"
-                + "Pour ajouter : cliquer sur le bouton +",
+        JOptionPane.showMessageDialog(this, """
+                                            Pour supprimer : S\u00e9letionner une ligne puis appuyer sur la touche suppr
+                                            Pour modifier : double clic sur une cellule du tableau
+                                            Pour ajouter : cliquer sur le bouton +""",
                 "Infos", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jMenu3MouseClicked
 
     private void fieldRechercherCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_fieldRechercherCaretUpdate
         // TODO add your handling code here:
-        int rowCount = this.tabFourni.getRowCount();
+        int rowCount = JFrameFournisseurs.tabFourni.getRowCount();
         for (int i=rowCount-1 ; i>=0 ; --i) model.removeRow(i);
 
         try{
             String fournisseursString = BddDAO.importFournisseursFromText();
             String[] fournisseursString2 = fournisseursString.split("//");
             Arrays.sort(fournisseursString2);
-            for(int i=0;i<fournisseursString2.length;i++){
-                String[] fournisseurString = fournisseursString2[i].split(";");
+            for (String fournisseursString21 : fournisseursString2) {
+                String[] fournisseurString = fournisseursString21.split(";");
                 String libelle="";
                 String correspondant="";
                 String tel="";
@@ -372,17 +378,16 @@ public class JFrameFournisseurs extends javax.swing.JFrame{
         if(modif == false){
             this.dispose();
         }else{
-            JOptionPane jop = new JOptionPane();			
-            int option = jop.showConfirmDialog(null, "Voulez-vous enregistrer les modifications avant de quitter ?", "Enregistrer ?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            int option = JOptionPane.showConfirmDialog(null, "Voulez-vous enregistrer les modifications avant de quitter ?", "Enregistrer ?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if(option == JOptionPane.OK_OPTION){
-                if(this.tabFourni.getSelectedRow()!=-1){ 
+                if(JFrameFournisseurs.tabFourni.getSelectedRow()!=-1){ 
                     ArrayList fournisseurs = new ArrayList();
-                    for(int i=0;i<this.tabFourni.getRowCount();i++){
-                        String libelle = (String)this.tabFourni.getValueAt(i,0);
-                        String correspondant = (String)this.tabFourni.getValueAt(i,1);
-                        String tel = (String)this.tabFourni.getValueAt(i,2);
-                        String fax = (String)this.tabFourni.getValueAt(i,3);
-                        String mail = (String)this.tabFourni.getValueAt(i,4);
+                    for(int i=0;i<JFrameFournisseurs.tabFourni.getRowCount();i++){
+                        String libelle = (String)JFrameFournisseurs.tabFourni.getValueAt(i,0);
+                        String correspondant = (String)JFrameFournisseurs.tabFourni.getValueAt(i,1);
+                        String tel = (String)JFrameFournisseurs.tabFourni.getValueAt(i,2);
+                        String fax = (String)JFrameFournisseurs.tabFourni.getValueAt(i,3);
+                        String mail = (String)JFrameFournisseurs.tabFourni.getValueAt(i,4);
                         Fournisseur unFournisseur = new Fournisseur(libelle,correspondant,tel,fax,mail);
                         String unFournisseurString = unFournisseur.getLibelle()+";"+unFournisseur.getCorrespondant()+";"+unFournisseur.getTel()+";"+unFournisseur.getFax()+";"+unFournisseur.getMail()+";//";
                         fournisseurs.add(unFournisseurString);

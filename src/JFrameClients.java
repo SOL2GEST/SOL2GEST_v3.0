@@ -5,7 +5,7 @@
 
 
 import Métier.Client;
-import dao.BddDAO;
+import DAO.BddDAO;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,7 +34,7 @@ public class JFrameClients extends javax.swing.JFrame {
         this.setVisible(true);
         String[] colums = {"Libelle","Correspondant","Tel","Fax","Mail","adresse"};
         model.setColumnIdentifiers(colums);     
-        this.tabClient.setModel(model);
+        JFrameClients.tabClient.setModel(model);
         tabClient.getColumnModel().getColumn(0).setPreferredWidth(150);
         tabClient.getColumnModel().getColumn(1).setPreferredWidth(150);
         tabClient.getColumnModel().getColumn(2).setPreferredWidth(110);
@@ -45,8 +45,8 @@ public class JFrameClients extends javax.swing.JFrame {
             String clientsString = BddDAO.importClientsFromText();
             String[] clientsString2 = clientsString.split("//");
             Arrays.sort(clientsString2);
-            for(int i=0;i<clientsString2.length;i++){
-                String[] clientString = clientsString2[i].split(";");
+            for (String clientsString21 : clientsString2) {
+                String[] clientString = clientsString21.split(";");
                 String libelle="";
                 String correspondant="";
                 String tel="";
@@ -245,20 +245,20 @@ public class JFrameClients extends javax.swing.JFrame {
                 int reply = JOptionPane.showConfirmDialog(null, "Etes vous sûr de vouloir supprimer cet élément ?", "", YES_NO_OPTION);
                 if (reply == JOptionPane.YES_OPTION){
                     int index = tabClient.getSelectedRow();
-                    DefaultTableModel model = (DefaultTableModel) tabClient.getModel();
-                    Object clientSuppr = model.getValueAt(index, 0);
+                    DefaultTableModel tableModel = (DefaultTableModel) tabClient.getModel();
+                    Object clientSuppr = tableModel.getValueAt(index, 0);
                     JFrameDevisGest.getjComboBox5().removeItem(clientSuppr);
                     JFrameDevisGest.getjComboBox5().setSelectedIndex(0);
-                    model.removeRow(index);
+                    tableModel.removeRow(index);
 
                     ArrayList clients = new ArrayList();
-                    for(int i=0;i<this.tabClient.getRowCount();i++){
-                        String libelle = (String)this.tabClient.getValueAt(i,0);
-                        String correspondant = (String)this.tabClient.getValueAt(i,1);
-                        String tel = (String)this.tabClient.getValueAt(i,2);
-                        String fax = (String)this.tabClient.getValueAt(i,3);
-                        String mail = (String)this.tabClient.getValueAt(i,4);
-                        String adresse = (String)this.tabClient.getValueAt(i,5);
+                    for(int i=0;i<JFrameClients.tabClient.getRowCount();i++){
+                        String libelle = (String)JFrameClients.tabClient.getValueAt(i,0);
+                        String correspondant = (String)JFrameClients.tabClient.getValueAt(i,1);
+                        String tel = (String)JFrameClients.tabClient.getValueAt(i,2);
+                        String fax = (String)JFrameClients.tabClient.getValueAt(i,3);
+                        String mail = (String)JFrameClients.tabClient.getValueAt(i,4);
+                        String adresse = (String)JFrameClients.tabClient.getValueAt(i,5);
                         Client unClient = new Client(libelle,correspondant,tel,fax,mail,adresse);
                         String unFournisseurString = unClient.getLibelle()+";"+unClient.getCorrespondant()+";"+unClient.getTel()+";"+unClient.getFax()+";"+unClient.getMail()+";"+unClient.getAdresse()+";//";
                         clients.add(unFournisseurString);
@@ -278,15 +278,15 @@ public class JFrameClients extends javax.swing.JFrame {
 
     private void boutonValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonValiderActionPerformed
         // TODO add your handling code here:
-        if(this.tabClient.getSelectedRow()!=-1){
+        if(JFrameClients.tabClient.getSelectedRow()!=-1){
             ArrayList clients = new ArrayList();
-            for(int i=0;i<this.tabClient.getRowCount();i++){
-                String libelle = (String)this.tabClient.getValueAt(i,0);
-                String correspondant = (String)this.tabClient.getValueAt(i,1);
-                String tel = (String)this.tabClient.getValueAt(i,2);
-                String fax = (String)this.tabClient.getValueAt(i,3);
-                String mail = (String)this.tabClient.getValueAt(i,4);
-                String adresse = (String)this.tabClient.getValueAt(i,5);
+            for(int i=0;i<JFrameClients.tabClient.getRowCount();i++){
+                String libelle = (String)JFrameClients.tabClient.getValueAt(i,0);
+                String correspondant = (String)JFrameClients.tabClient.getValueAt(i,1);
+                String tel = (String)JFrameClients.tabClient.getValueAt(i,2);
+                String fax = (String)JFrameClients.tabClient.getValueAt(i,3);
+                String mail = (String)JFrameClients.tabClient.getValueAt(i,4);
+                String adresse = (String)JFrameClients.tabClient.getValueAt(i,5);
                 Client unClient = new Client(libelle,correspondant,tel,fax,mail,adresse);
                 String unFournisseurString = unClient.getLibelle()+";"+unClient.getCorrespondant()+";"+unClient.getTel()+";"+unClient.getFax()+";"+unClient.getMail()+";"+unClient.getAdresse()+";//";
                 clients.add(unFournisseurString);
@@ -301,9 +301,10 @@ public class JFrameClients extends javax.swing.JFrame {
 
     private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "Pour supprimer : Séletionner une ligne puis appuyer sur la touche suppr\n"
-                + "Pour modifier : double clic sur une cellule du tableau\n"
-                + "Pour ajouter : cliquer sur le bouton +",
+        JOptionPane.showMessageDialog(this, """
+                                            Pour supprimer : S\u00e9letionner une ligne puis appuyer sur la touche suppr
+                                            Pour modifier : double clic sur une cellule du tableau
+                                            Pour ajouter : cliquer sur le bouton +""",
                 "Infos", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jMenu2MouseClicked
 
@@ -314,15 +315,15 @@ public class JFrameClients extends javax.swing.JFrame {
 
     private void fieldRechercherCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_fieldRechercherCaretUpdate
         // TODO add your handling code here:
-        int rowCount = this.tabClient.getRowCount();
+        int rowCount = JFrameClients.tabClient.getRowCount();
         for (int i=rowCount-1 ; i>=0 ; --i) model.removeRow(i);
 
         try{
             String clientsString = BddDAO.importClientsFromText();
             String[] clientsString2 = clientsString.split("//");
             Arrays.sort(clientsString2);
-            for(int i=0;i<clientsString2.length;i++){
-                String[] clientString = clientsString2[i].split(";");
+            for (String clientsString21 : clientsString2) {
+                String[] clientString = clientsString21.split(";");
                 String libelle="";
                 String correspondant="";
                 String tel="";
@@ -354,18 +355,17 @@ public class JFrameClients extends javax.swing.JFrame {
         if(modif == false){
             this.dispose();
         }else{
-            JOptionPane jop = new JOptionPane();			
-            int option = jop.showConfirmDialog(null, "Voulez-vous enregistrer les modifications avant de quitter ?", "Enregistrer ?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            int option = JOptionPane.showConfirmDialog(null, "Voulez-vous enregistrer les modifications avant de quitter ?", "Enregistrer ?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if(option == JOptionPane.OK_OPTION){
-                if(this.tabClient.getSelectedRow()!=-1){
+                if(JFrameClients.tabClient.getSelectedRow()!=-1){
                     ArrayList clients = new ArrayList();
-                    for(int i=0;i<this.tabClient.getRowCount();i++){
-                        String libelle = (String)this.tabClient.getValueAt(i,0);
-                        String correspondant = (String)this.tabClient.getValueAt(i,1);
-                        String tel = (String)this.tabClient.getValueAt(i,2);
-                        String fax = (String)this.tabClient.getValueAt(i,3);
-                        String mail = (String)this.tabClient.getValueAt(i,4);
-                        String adresse = (String)this.tabClient.getValueAt(i,5);
+                    for(int i=0;i<JFrameClients.tabClient.getRowCount();i++){
+                        String libelle = (String)JFrameClients.tabClient.getValueAt(i,0);
+                        String correspondant = (String)JFrameClients.tabClient.getValueAt(i,1);
+                        String tel = (String)JFrameClients.tabClient.getValueAt(i,2);
+                        String fax = (String)JFrameClients.tabClient.getValueAt(i,3);
+                        String mail = (String)JFrameClients.tabClient.getValueAt(i,4);
+                        String adresse = (String)JFrameClients.tabClient.getValueAt(i,5);
                         Client unClient = new Client(libelle,correspondant,tel,fax,mail,adresse);
                         String unFournisseurString = unClient.getLibelle()+";"+unClient.getCorrespondant()+";"+unClient.getTel()+";"+unClient.getFax()+";"+unClient.getMail()+";"+unClient.getAdresse()+";//";
                         clients.add(unFournisseurString);

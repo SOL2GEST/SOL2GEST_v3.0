@@ -5,7 +5,8 @@
 
 
 import Métier.Produit;
-import dao.BddDAO;
+import DAO.BddDAO;
+import java.awt.HeadlessException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -162,7 +163,7 @@ public class JFrameAjoutProduit extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Le Produit a été ajouté", "Info", JOptionPane.INFORMATION_MESSAGE);
             
             this.dispose();
-        }catch(Exception e){
+        }catch(HeadlessException e){
             JOptionPane.showMessageDialog(null, "Un problème est survenu", "Erreur", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_boutonValiderActionPerformed

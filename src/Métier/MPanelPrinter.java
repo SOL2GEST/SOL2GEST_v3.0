@@ -80,6 +80,7 @@ public class MPanelPrinter implements Printable {
         documentTitle = title;
     }
 
+    @Override
     public int print(Graphics g, PageFormat pf, int pageIndex)
             throws PrinterException {
         Dimension tailleDoc = panel.getSize();

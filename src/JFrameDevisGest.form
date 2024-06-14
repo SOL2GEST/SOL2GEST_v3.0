@@ -85,9 +85,6 @@
     <Property name="iconImage" type="java.awt.Image" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
       <Connection code="new ImageIcon(&quot;./image/logo-sol2s.png&quot; ).getImage()" type="code"/>
     </Property>
-    <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[1100, 617]"/>
-    </Property>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[1100, 617]"/>
     </Property>
@@ -124,7 +121,7 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+              <Component id="jPanel2" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -141,26 +138,26 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jPanel1" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jPanel3" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jPanel4" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel2" min="-2" pref="123" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="fieldDate" min="-2" pref="78" max="-2" attributes="0"/>
+                          <Component id="fieldDate" min="-2" pref="105" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="jPanel3" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="jPanel1" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -174,10 +171,10 @@
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="fieldDate" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <Component id="jPanel1" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jPanel3" max="32767" attributes="0"/>
                       <Component id="jPanel4" max="32767" attributes="0"/>
                   </Group>
@@ -248,7 +245,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
-                                      <Component id="fieldPloy" max="32767" attributes="0"/>
+                                      <Component id="fieldPloy" pref="88" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
                                   </Group>
@@ -313,7 +310,7 @@
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="jScrollPane1" pref="370" max="32767" attributes="0"/>
+                              <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jScrollPane3" min="-2" pref="54" max="-2" attributes="0"/>
                           </Group>
@@ -443,12 +440,12 @@
                           <Data value="null"/>
                           <Data value="null"/>
                           <Data value="null"/>
-                          <Data value="3.85"/>
+                          <Data value="4.2"/>
                           <Data value="null"/>
-                          <Data value="0.85"/>
+                          <Data value="1.2"/>
                           <Data value="null"/>
-                          <Data value="0.8"/>
-                          <Data value="null"/>
+                          <Data value="1.0"/>
+                          <Data value="1.0"/>
                         </Column>
                       </Table>
                     </Property>
@@ -790,7 +787,7 @@
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="fieldInterlocuteur" min="-2" pref="180" max="-2" attributes="0"/>
-                                  <Component id="comboBoxEntreprise" pref="226" max="32767" attributes="0"/>
+                                  <Component id="comboBoxEntreprise" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" max="-2" attributes="0"/>
                               <Component id="buttonAddClient" min="-2" max="-2" attributes="0"/>
@@ -1078,7 +1075,6 @@
               <Properties>
                 <Property name="toolTipText" type="java.lang.String" value="ajouter/modifier/supprimer des clients"/>
                 <Property name="focusable" type="boolean" value="false"/>
-                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonAddClientActionPerformed"/>
@@ -1139,7 +1135,7 @@
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="103" groupAlignment="1" attributes="0">
                                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                  <Component id="fieldCalculTS1" pref="55" max="32767" attributes="0"/>
+                                                  <Component id="fieldCalculTS1" max="32767" attributes="0"/>
                                                   <Component id="fieldCalculPoly1" max="32767" attributes="0"/>
                                               </Group>
                                               <Component id="fieldCalculBeton1" min="-2" pref="55" max="-2" attributes="0"/>
@@ -1194,7 +1190,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="4" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="18" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -1274,9 +1270,9 @@
                                                   </Group>
                                                   <Group type="102" alignment="0" attributes="0">
                                                       <Component id="jLabel48" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace type="unrelated" max="32767" attributes="0"/>
+                                                      <EmptySpace type="unrelated" pref="16" max="32767" attributes="0"/>
                                                       <Component id="comboBoxBeton" min="-2" pref="190" max="-2" attributes="0"/>
-                                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                                      <EmptySpace min="0" pref="6" max="32767" attributes="0"/>
                                                   </Group>
                                               </Group>
                                           </Group>
@@ -1337,7 +1333,7 @@
                                                   </Group>
                                               </Group>
                                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                  <Component id="fieldCalculTS5" pref="55" max="32767" attributes="0"/>
+                                                  <Component id="fieldCalculTS5" max="32767" attributes="0"/>
                                                   <Component id="fieldCalculPoly5" alignment="1" max="32767" attributes="0"/>
                                                   <Component id="fieldCalculTS10" max="32767" attributes="0"/>
                                               </Group>
@@ -1345,7 +1341,7 @@
                                       </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="8" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
                                       <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
@@ -1374,7 +1370,7 @@
                                                       <Group type="102" alignment="0" attributes="0">
                                                           <Component id="jLabel45" min="-2" max="-2" attributes="0"/>
                                                           <EmptySpace max="-2" attributes="0"/>
-                                                          <Component id="fieldCalculCABTotal" pref="55" max="32767" attributes="0"/>
+                                                          <Component id="fieldCalculCABTotal" max="32767" attributes="0"/>
                                                       </Group>
                                                       <Group type="102" attributes="0">
                                                           <Component id="jLabel49" min="-2" max="-2" attributes="0"/>
@@ -1735,7 +1731,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="fieldCalculPoly5">
               <Properties>
-                <Property name="text" type="java.lang.String" value="63"/>
+                <Property name="text" type="java.lang.String" value="73"/>
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[6, 100]"/>
                 </Property>
@@ -1746,7 +1742,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="fieldCalculTS5">
               <Properties>
-                <Property name="text" type="java.lang.String" value="14"/>
+                <Property name="text" type="java.lang.String" value="19"/>
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[6, 100]"/>
                 </Property>
@@ -1825,7 +1821,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="fieldCalculCAB2">
               <Properties>
-                <Property name="text" type="java.lang.String" value="0.30"/>
+                <Property name="text" type="java.lang.String" value="0.40"/>
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[6, 100]"/>
                 </Property>
@@ -1882,7 +1878,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="fieldCalculBeton2">
               <Properties>
-                <Property name="text" type="java.lang.String" value="81"/>
+                <Property name="text" type="java.lang.String" value="115"/>
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[6, 100]"/>
                 </Property>

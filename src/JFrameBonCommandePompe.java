@@ -3,12 +3,10 @@
  * and open the template in the editor.
  */
 
-import Métier.Client;
 import Métier.Fournisseur;
 import com.github.lgooddatepicker.components.DateTimePicker;
 import com.github.lgooddatepicker.components.TimePickerSettings;
-import com.toedter.calendar.JCalendar;
-import dao.BddDAO;
+import DAO.BddDAO;
 import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Dialog;
@@ -32,13 +30,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTable;
-import javax.swing.JTextField;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
@@ -54,7 +49,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  */
 public class JFrameBonCommandePompe extends javax.swing.JFrame {
     
-    Client clientRecherche = null;
     File fichierOuvert;
     boolean modif = false;
     
@@ -85,8 +79,8 @@ public class JFrameBonCommandePompe extends javax.swing.JFrame {
         try{
             String fournisseursString = BddDAO.importFournisseursFromText();
             String[] fournisseursString2 = fournisseursString.split("//");
-            for(int i=0;i<fournisseursString2.length;i++){
-                String[] fournisseurString = fournisseursString2[i].split(";");
+            for (String fournisseursString21 : fournisseursString2) {
+                String[] fournisseurString = fournisseursString21.split(";");
                 String libelle="";
                 String correspondant="";
                 String tel="";
@@ -102,7 +96,7 @@ public class JFrameBonCommandePompe extends javax.swing.JFrame {
                     
                 }
                 Fournisseur unFournisseur = new Fournisseur(libelle, correspondant, tel, fax, mail);
-                this.comboBoxFourni.addItem(unFournisseur.getLibelle());
+                JFrameBonCommandePompe.comboBoxFourni.addItem(unFournisseur.getLibelle());
             }        
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Un problème est survenu au chargement de la BDD", "Erreur", JOptionPane.ERROR_MESSAGE);
@@ -654,8 +648,8 @@ public class JFrameBonCommandePompe extends javax.swing.JFrame {
         try{
             String fournisseursString = BddDAO.importFournisseursFromText();
             String[] fournisseursString2 = fournisseursString.split("//");
-            for(int i=0;i<fournisseursString2.length;i++){
-                String[] fournisseurString = fournisseursString2[i].split(";");
+            for (String fournisseursString21 : fournisseursString2) {
+                String[] fournisseurString = fournisseursString21.split(";");
                 String libelle="";
                 String correspondant="";
                 String tel="";
@@ -671,20 +665,20 @@ public class JFrameBonCommandePompe extends javax.swing.JFrame {
                     
                 }
                 Fournisseur unFournisseur = new Fournisseur(libelle, correspondant, tel, fax, mail);
-                if(this.comboBoxFourni.getSelectedItem().equals(unFournisseur.getLibelle())){
-                    this.fieldCorres.setText(unFournisseur.getCorrespondant());
-                    this.fieldTel.setText(unFournisseur.getTel());
-                    this.fieldFax.setText(unFournisseur.getFax());
-                    this.fieldMail.setText(unFournisseur.getMail());
+                if(JFrameBonCommandePompe.comboBoxFourni.getSelectedItem().equals(unFournisseur.getLibelle())){
+                    JFrameBonCommandePompe.fieldCorres.setText(unFournisseur.getCorrespondant());
+                    JFrameBonCommandePompe.fieldTel.setText(unFournisseur.getTel());
+                    JFrameBonCommandePompe.fieldFax.setText(unFournisseur.getFax());
+                    JFrameBonCommandePompe.fieldMail.setText(unFournisseur.getMail());
                 }
             }
         
             Fournisseur unFournisseur = JFrameAjoutFournisseur.getFournisseur();
-            if(this.comboBoxFourni.getSelectedItem().equals(unFournisseur.getLibelle())){
-                this.fieldCorres.setText(unFournisseur.getCorrespondant());
-                this.fieldTel.setText(unFournisseur.getTel());
-                this.fieldFax.setText(unFournisseur.getFax());   
-                this.fieldMail.setText(unFournisseur.getMail());
+            if(JFrameBonCommandePompe.comboBoxFourni.getSelectedItem().equals(unFournisseur.getLibelle())){
+                JFrameBonCommandePompe.fieldCorres.setText(unFournisseur.getCorrespondant());
+                JFrameBonCommandePompe.fieldTel.setText(unFournisseur.getTel());
+                JFrameBonCommandePompe.fieldFax.setText(unFournisseur.getFax());   
+                JFrameBonCommandePompe.fieldMail.setText(unFournisseur.getMail());
             } 
         }catch(Exception e){        
         }
@@ -796,7 +790,7 @@ public class JFrameBonCommandePompe extends javax.swing.JFrame {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }catch(Exception e){    
+        }catch(IOException e){    
             JOptionPane.showMessageDialog(null, "Un problème est survenu", "Erreur", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -857,7 +851,7 @@ public class JFrameBonCommandePompe extends javax.swing.JFrame {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }catch(Exception e){    
+        }catch(HeadlessException | IOException e){    
             JOptionPane.showMessageDialog(null, "Un problème est survenu", "Erreur", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -905,7 +899,7 @@ public class JFrameBonCommandePompe extends javax.swing.JFrame {
                 int index = tabProd.getSelectedRow();
                 DefaultTableModel model = (DefaultTableModel) tabProd.getModel();
                 model.removeRow(index);
-                this.fieldMontantTotal.setText(Float.toString(calculMontantTotal(model))+" €");
+                JFrameBonCommandePompe.fieldMontantTotal.setText(Float.toString(calculMontantTotal(model))+" €");
             }catch(Exception e){
                 JOptionPane.showMessageDialog(null, "Séléctionnez une ligne puis appuyer sur la touche suppr", "Info", JOptionPane.INFORMATION_MESSAGE);
             }
@@ -966,9 +960,9 @@ public class JFrameBonCommandePompe extends javax.swing.JFrame {
             }
             model.addRow(new Object[]{}); 
             tabProd.setValueAt(sheet.getRow((short) 9+i).getCell(0).getStringCellValue(), i, 0);
-            tabProd.setValueAt(Float.parseFloat(sheet.getRow((short) 9+i).getCell(1).getStringCellValue()), i, 1);
+            tabProd.setValueAt(Float.valueOf(sheet.getRow((short) 9+i).getCell(1).getStringCellValue()), i, 1);
             tabProd.setValueAt(sheet.getRow((short) 9+i).getCell(2).getStringCellValue(), i, 2);
-            tabProd.setValueAt(Float.parseFloat(sheet.getRow((short) 9+i).getCell(3).getStringCellValue()), i, 3);
+            tabProd.setValueAt(Float.valueOf(sheet.getRow((short) 9+i).getCell(3).getStringCellValue()), i, 3);
         }
     }
     
@@ -993,10 +987,11 @@ public class JFrameBonCommandePompe extends javax.swing.JFrame {
     
     private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "Pour ajouter/supprimer/modifier un fournisseur : appuyer sur le bouton à coté des destinataires\n"
-                + "Pour ajouter/supprimer/modifier un produit : appuyer sur le bouton à coté du tableau sous le +\n"
-                + "Pour ajouter un produit au tableau : cliquer sur le bouton + à coté de celui-ci\n"
-                + "Pour supprimer un produit du tableau : sélectionner une ligne et appuyer sur la touche suppr",
+        JOptionPane.showMessageDialog(this, """
+                                            Pour ajouter/supprimer/modifier un fournisseur : appuyer sur le bouton \u00e0 cot\u00e9 des destinataires
+                                            Pour ajouter/supprimer/modifier un produit : appuyer sur le bouton \u00e0 cot\u00e9 du tableau sous le +
+                                            Pour ajouter un produit au tableau : cliquer sur le bouton + \u00e0 cot\u00e9 de celui-ci
+                                            Pour supprimer un produit du tableau : s\u00e9lectionner une ligne et appuyer sur la touche suppr""",
                 "Infos", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jMenu2MouseClicked
 
@@ -1006,7 +1001,7 @@ public class JFrameBonCommandePompe extends javax.swing.JFrame {
             this.dispose();
         }else{
             JOptionPane jop = new JOptionPane();			
-            int option = jop.showConfirmDialog(null, "Voulez-vous enregistrer avant de quitter ?", "Enregistrer ?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            int option = JOptionPane.showConfirmDialog(null, "Voulez-vous enregistrer avant de quitter ?", "Enregistrer ?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
             if(option == JOptionPane.OK_OPTION){
                 if(fichierOuvert!=null){
@@ -1027,11 +1022,7 @@ public class JFrameBonCommandePompe extends javax.swing.JFrame {
                        // Dossier Courant
                       chooser.setCurrentDirectory(fDirectory); 
 
-                      Date actuelleF = new Date();
-                      DateFormat dateFormatF = new SimpleDateFormat("dd-MM-yyyy");
-                      String dateF = dateFormatF.format(actuelleF);
-
-                      File f = new  File("BDC_POMPE_"+this.comboBoxFourni.getSelectedItem()+"_"+fieldLieu.getText());
+                      File f = new  File("BDC_POMPE_"+JFrameBonCommandePompe.comboBoxFourni.getSelectedItem()+"_"+fieldLieu.getText());
                       chooser.setSelectedFile(f);
                        //Affichage et récupération de la réponse de l'utilisateur
                        int reponse = chooser.showDialog(chooser,"Enregistrer sous");             
@@ -1068,11 +1059,7 @@ public class JFrameBonCommandePompe extends javax.swing.JFrame {
            // Dossier Courant
           chooser.setCurrentDirectory(fDirectory); 
 
-          Date actuelleF = new Date();
-          DateFormat dateFormatF = new SimpleDateFormat("dd-MM-yyyy");
-          String dateF = dateFormatF.format(actuelleF);
-
-          File f = new  File("BDC_POMPE_"+this.comboBoxFourni.getSelectedItem()+"_"+fieldLieu.getText());
+          File f = new  File("BDC_POMPE_"+JFrameBonCommandePompe.comboBoxFourni.getSelectedItem()+"_"+fieldLieu.getText());
           chooser.setSelectedFile(f);
            //Affichage et récupération de la réponse de l'utilisateur
            int reponse = chooser.showDialog(chooser,"Enregistrer sous");             
@@ -1132,7 +1119,7 @@ public class JFrameBonCommandePompe extends javax.swing.JFrame {
         DateFormat formatHeure = new SimpleDateFormat("HH:mm");
         String dateAffiche = formatDate.format(date);
         String heureAffiche = formatHeure.format(time).replace(":", "h");
-        fieldDate.setText(dateAffiche + " - POMPE : " + heureAffiche);
+        fieldDate.setText(dateAffiche.toUpperCase() + " - POMPE : " + heureAffiche);
     }//GEN-LAST:event_boutonCalendrierActionPerformed
 
     public void chargerBonCommandeTxt(String nomfichier){
@@ -1155,9 +1142,9 @@ public class JFrameBonCommandePompe extends javax.swing.JFrame {
             this.checkBoxBonCommande.isSelected();
         }
         
-        this.comboBoxFourni.setSelectedItem(bonCommandeString2[2]);
+        JFrameBonCommandePompe.comboBoxFourni.setSelectedItem(bonCommandeString2[2]);
         this.fieldRefClient.setText(bonCommandeString2[3]);
-        this.fieldMontantTotal.setText(bonCommandeString2[4]);           
+        JFrameBonCommandePompe.fieldMontantTotal.setText(bonCommandeString2[4]);           
         this.fieldLieu.setText(bonCommandeString2[5]);
         this.fieldDate.setText(bonCommandeString2[6]);       
     }

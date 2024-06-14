@@ -1,26 +1,13 @@
-package dao;
+package DAO;
 
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
-
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
 
 import java.io.FileWriter;
 import java.io.BufferedWriter;
 import java.io.PrintWriter;
 
-import java.io.InputStreamReader;
 import java.io.FileReader;
 import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.InputStream;
-
-import java.net.URL;
-
-import java.io.EOFException;
 import java.io.IOException;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class BddDAO {

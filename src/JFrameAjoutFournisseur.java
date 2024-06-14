@@ -5,7 +5,7 @@
 
 
 import Métier.Fournisseur;
-import dao.BddDAO;
+import DAO.BddDAO;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
@@ -28,6 +28,11 @@ public class JFrameAjoutFournisseur extends javax.swing.JFrame {
     
     /**
      * Creates new form JFrameDemoModeleList
+     * @param comboBoxFourniRecup
+     * @param fieldCorresRecup
+     * @param fieldTelRecup
+     * @param fieldFaxRecup
+     * @param fieldMailRecup
      */
     public JFrameAjoutFournisseur(JComboBox comboBoxFourniRecup, JTextField fieldCorresRecup,  JTextField fieldTelRecup, JTextField fieldFaxRecup, JTextField fieldMailRecup) {
         initComponents();
