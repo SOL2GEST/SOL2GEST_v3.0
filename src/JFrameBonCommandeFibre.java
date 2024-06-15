@@ -977,11 +977,10 @@ public class JFrameBonCommandeFibre extends javax.swing.JFrame {
     
     private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, """
-                                            Pour ajouter/supprimer/modifier un fournisseur : appuyer sur le bouton \u00e0 cot\u00e9 des destinataires
-                                            Pour ajouter/supprimer/modifier un produit : appuyer sur le bouton \u00e0 cot\u00e9 du tableau sous le +
-                                            Pour ajouter un produit au tableau : cliquer sur le bouton + \u00e0 cot\u00e9 de celui-ci
-                                            Pour supprimer un produit du tableau : s\u00e9lectionner une ligne et appuyer sur la touche suppr""",
+        JOptionPane.showMessageDialog(this, "Pour ajouter/supprimer/modifier un fournisseur : appuyer sur le bouton \u00e0 cot\u00e9 des destinataires\n"
+                + "Pour ajouter/supprimer/modifier un produit : appuyer sur le bouton \u00e0 cot\u00e9 du tableau sous le +\n"
+                + "Pour ajouter un produit au tableau : cliquer sur le bouton + \u00e0 cot\u00e9 de celui-ci\n"
+                + "Pour supprimer un produit du tableau : s\u00e9lectionner une ligne et appuyer sur la touche suppr",
                 "Infos", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jMenu2MouseClicked
 

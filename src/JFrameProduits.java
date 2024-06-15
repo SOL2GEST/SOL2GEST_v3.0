@@ -276,10 +276,9 @@ public class JFrameProduits extends javax.swing.JFrame {
 
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, """
-                                            Pour supprimer : S\u00e9letionner une ligne puis appuyer sur la touche suppr
-                                            Pour modifier : double clic sur une cellule du tableau
-                                            Pour ajouter : cliquer sur le bouton +""",
+        JOptionPane.showMessageDialog(this, "Pour supprimer : S\u00e9letionner une ligne puis appuyer sur la touche suppr\n"
+                + "Pour modifier : double clic sur une cellule du tableau\n"
+                + "Pour ajouter : cliquer sur le bouton +",
                 "Infos", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jMenu1MouseClicked
 
